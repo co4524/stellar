@@ -3,6 +3,7 @@ echo | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt-get update
 echo 'Y' | sudo apt-get install git build-essential pkg-config autoconf automake libtool bison flex libpq-dev
 echo 'Y' | sudo apt-get install clang-5.0
+sudo apt-get install clang-format-5.0
 echo 'Y' | sudo apt-get install pandoc
 echo 'Y' | sudo apt-get install libc++-dev libc++abi-dev
 export CC=clang-5.0
