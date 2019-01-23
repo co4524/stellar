@@ -1,5 +1,4 @@
 #stellar-core
-#--------------------#
 sudo apt-get install software-properties-common
 echo | sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt-get update
@@ -18,17 +17,32 @@ cd stellar-core/
 sudo make install
 
 #goinstall
-#---------------------#
 cd
 wget https://dl.google.com/go/go1.11.4.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.11.4.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 
-#client
-echo 'Y' | sudo apt-get install postgresql postgresql-client
+##### Install Database
+#echo 'Y' | sudo apt-get install postgresql postgresql-client
 
-#horizon install
-#---------------------#
+
+#### Install Horion (/home/ubuntu)
 wget https://github.com/stellar/go/releases/download/horizon-v0.15.4/horizon-v0.15.4-linux-amd64.tar.gz
 sudo tar -C /home/ubuntu -xzf horizon-v0.15.4-linux-amd64.tar.gz
+
+
+s=$(stellar-core -genseed)
+seed=${s:13:56}
+echo $s
+touch key.txt
+echo $s >> /home/ubuntu/stellar/key.txt
+cat stellar-core.cfg | sed "s/SAGQF56U7CUHUCBDAOJRNFH3AWBOUY4V3Z3AFRJ52LSZI3VHNCKXJOMX/$seed/g" > node.cfg
+source .env.tmp
+mv node.cfg /home/ubuntu/stellar/stellar-core/
+cd /home/ubuntu/stellar/stellar-core
+stellar-core new-db --conf node.cfg
+stellar-core --forcescp --conf node.cfg
+stellar-core -newhist local --conf node.cfg
+stellar-core --conf node.cfg
+
 
