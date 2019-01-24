@@ -1,7 +1,7 @@
 var StellarSdk = require('stellar-sdk');
 var rootAccount = require('./rootAccount.json');
 var server = new StellarSdk.Server('http://localhost:8000',{allowHttp: true});
-StellarSdk.Network.use(new StellarSdk.Network("Standalone Network ; December 2018"));
+StellarSdk.Network.use(new StellarSdk.Network("stellar"));
 
 var sourceKeys = StellarSdk.Keypair.fromSecret(rootAccount.privateKey);
 var pair = StellarSdk.Keypair.random();

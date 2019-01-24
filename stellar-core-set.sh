@@ -43,10 +43,15 @@ cat stellar-core.cfg | sed "s/SAGQF56U7CUHUCBDAOJRNFH3AWBOUY4V3Z3AFRJ52LSZI3VHNC
 source .env.tmp
 #setup horizon env
 mv node.cfg /home/ubuntu/stellar/stellar-core/
+#Get account private/public key to rootAccount.json
+export Account_private=$(stellar-core new-db --conf privateNet.cfg | grep -o ' S[0-9A-Z]*')
+export Account_public= $(echo $Account_private | stellar-core --sec2pub)
+#Change account private/public key to rootAccount.json
+sed -i "s/GAJBXRI5PNUKTAMK5SYUPQN54VWNBMHABW5RCWSGCQ2DHXDFYPG4E2YL/$Account_public/g" rootAccount.json
+sed -i "s/SBW2NSLIUJNNEDU57ABVVAMFJY4RYD4VNGMATMCL4JIFEUNZEGOGYPEU/$Account_private/g" rootAccount.json
+#start stellar-core
 cd /home/ubuntu/stellar/stellar-core
-message=$(stellar-core new-db --conf node.cfg)
 stellar-core --forcescp --conf node.cfg
 stellar-core -newhist local --conf node.cfg
 stellar-core --conf node.cfg
-echo $message
 
