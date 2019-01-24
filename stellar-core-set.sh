@@ -40,17 +40,18 @@ touch key.txt
 echo $s >> /home/ubuntu/stellar/key.txt
 cat stellar-core.cfg | sed "s/SAGQF56U7CUHUCBDAOJRNFH3AWBOUY4V3Z3AFRJ52LSZI3VHNCKXJOMX/$seed/g" > node.cfg
 #setup horizon env
-source .env.tmp
+#source .env.tmp
 #setup horizon env
 mv node.cfg /home/ubuntu/stellar/stellar-core/
 #Get account private/public key to rootAccount.json
-Account_private=$(stellar-core new-db --conf stellar-core/node.cfg | grep -o ' S[0-9A-Z]*')
+cd /home/ubuntu/stellar/stellar-core
+Account_private=$(stellar-core new-db --conf node.cfg | grep -o ' S[0-9A-Z]*')
 Account_public=$(echo $Account_private | stellar-core --sec2pub) 
 echo $Account_private >> /home/ubuntu/stellar/key.txt
 echo $Account_public >> /home/ubuntu/stellar/key.txt
 #Change account private/public key to rootAccount.json
-sed -i "s/GAJBXRI5PNUKTAMK5SYUPQN54VWNBMHABW5RCWSGCQ2DHXDFYPG4E2YL/$Account_public/g" rootAccount.json
-sed -i "s/SBW2NSLIUJNNEDU57ABVVAMFJY4RYD4VNGMATMCL4JIFEUNZEGOGYPEU/$Account_private/g" rootAccount.json
+sed -i "s/GAJBXRI5PNUKTAMK5SYUPQN54VWNBMHABW5RCWSGCQ2DHXDFYPG4E2YL/$Account_public/g" /home/ubuntu/stellar/rootAccount.json
+sed -i "s/SBW2NSLIUJNNEDU57ABVVAMFJY4RYD4VNGMATMCL4JIFEUNZEGOGYPEU/$Account_private/g" /home/ubuntu/stellar/rootAccount.json
 #start stellar-core
 cd /home/ubuntu/stellar/stellar-core
 stellar-core --forcescp --conf node.cfg
