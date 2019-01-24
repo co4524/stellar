@@ -2,8 +2,10 @@
 
 >step1:auth
 >>chmod 777 stellar-core-set.sh
+
 >step2: install psql
 >>echo 'Y' | sudo apt-get install postgresql postgresql-client
+
 >step3: creat role db
 >>sudo su postgres
 >>psql postgres -f psql.dat
