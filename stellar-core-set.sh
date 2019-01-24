@@ -31,13 +31,17 @@ wget https://github.com/stellar/go/releases/download/horizon-v0.15.4/horizon-v0.
 sudo tar -C /home/ubuntu -xzf horizon-v0.15.4-linux-amd64.tar.gz
 
 
+#Write config,start stellar-core,setup horizon env
+cd /home/ubuntu/stellar/
 s=$(stellar-core -genseed)
 seed=${s:13:56}
 echo $s
 touch key.txt
 echo $s >> /home/ubuntu/stellar/key.txt
 cat stellar-core.cfg | sed "s/SAGQF56U7CUHUCBDAOJRNFH3AWBOUY4V3Z3AFRJ52LSZI3VHNCKXJOMX/$seed/g" > node.cfg
+#setup horizon env
 source .env.tmp
+#setup horizon env
 mv node.cfg /home/ubuntu/stellar/stellar-core/
 cd /home/ubuntu/stellar/stellar-core
 message=$(stellar-core new-db --conf node.cfg)
