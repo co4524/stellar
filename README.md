@@ -9,8 +9,10 @@
 >step3: creat role db
 >>sudo su postgres
 >>psql postgres -f psql.dat
+
 >step4: start stellar-core
 >>./stellar-core-set.sh
+
 >step5 start horizon
 >>./horizon db init
 >>./horizon serve
