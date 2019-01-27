@@ -40,7 +40,7 @@ touch key.txt
 echo $s >> /home/ubuntu/stellar/key.txt
 cat stellar-core.cfg | sed "s/SAGQF56U7CUHUCBDAOJRNFH3AWBOUY4V3Z3AFRJ52LSZI3VHNCKXJOMX/$seed/g" > node.cfg
 #setup horizon env
-#source .env.tmp
+source .env.tmp
 #setup horizon env
 mv node.cfg /home/ubuntu/stellar/stellar-core/
 #Get account private/public key to rootAccount.json
