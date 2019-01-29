@@ -1,20 +1,13 @@
 # stellar
 
->dependences
->>$sudo apt install make
-
 >install psql
 >>$make postgresql      $psql postgres -f psql.dat    $exit
 
-
 >start stellar-core
->>$make install
+>>$chmod 777 stellar-core.sh     $./stellar-core-set.sh
 
 >Open new Terminal&&start horizon
->>$make horizon
-
-# stellar
+>>$chmod 777 Horizon_env.sh     $./Horizon_env.sh
 
 git clone https://github.com/co4524/stellar.git
 
-# stellar
