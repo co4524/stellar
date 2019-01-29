@@ -36,7 +36,7 @@ sudo apt update
 echo 'Y' | sudo apt install nodejs
 echo 'Y' | sudo apt install npm
 cd ~
-curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 echo 'Y' | sudo apt install nodejs
 npm install --save stellar-sdk
@@ -56,7 +56,7 @@ mv node.cfg /home/ubuntu/stellar/stellar-core/
 #Get account private/public key to rootAccount.json
 cd /home/ubuntu/stellar/stellar-core
 Account_private=$(stellar-core new-db --conf node.cfg | grep -o ' S[0-9A-Z]*')
-private=${Account_private:1:55}
+private=${Account_private:1:56}
 Account_public=$(echo $Account_private | stellar-core --sec2pub) 
 echo $Account_private >> /home/ubuntu/stellar/key.txt
 echo $Account_public >> /home/ubuntu/stellar/key.txt

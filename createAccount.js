@@ -17,6 +17,7 @@ server.loadAccount(sourceKeys.publicKey())
                     startingBalance: "10000"
                   }))
                 .addMemo(StellarSdk.Memo.text('Hello world!'))
+                .setTimeout(30)
                 .build(); 
     transaction.sign(sourceKeys);
     return server.submitTransaction(transaction);
