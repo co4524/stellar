@@ -13,7 +13,10 @@
 >>$./stellar-core-set.sh
 
 >step5 start horizon
->>$./horizon db init 		$./horizon serve
+>>$chmod 777 Horizon_env.sh 		$./Horizon_env.sh
 
 # stellar
+
+git clone https://github.com/co4524/stellar.git
+
 # stellar

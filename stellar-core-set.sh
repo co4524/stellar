@@ -30,6 +30,16 @@ export PATH=$PATH:/usr/local/go/bin
 wget https://github.com/stellar/go/releases/download/horizon-v0.15.4/horizon-v0.15.4-linux-amd64.tar.gz
 sudo tar -C /home/ubuntu -xzf horizon-v0.15.4-linux-amd64.tar.gz
 
+##Install Nodejs npm stellar-sdk
+cd
+sudo apt update
+echo 'Y' | sudo apt install nodejs
+echo 'Y' | sudo apt install npm
+cd ~
+curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+sudo bash nodesource_setup.sh
+echo 'Y' | sudo apt install nodejs
+npm install --save stellar-sdk
 
 #Write config,start stellar-core,setup horizon env
 cd /home/ubuntu/stellar/
@@ -46,12 +56,13 @@ mv node.cfg /home/ubuntu/stellar/stellar-core/
 #Get account private/public key to rootAccount.json
 cd /home/ubuntu/stellar/stellar-core
 Account_private=$(stellar-core new-db --conf node.cfg | grep -o ' S[0-9A-Z]*')
+private=${Account_private:1:55}
 Account_public=$(echo $Account_private | stellar-core --sec2pub) 
 echo $Account_private >> /home/ubuntu/stellar/key.txt
 echo $Account_public >> /home/ubuntu/stellar/key.txt
 #Change account private/public key to rootAccount.json
 sed -i "s/GAJBXRI5PNUKTAMK5SYUPQN54VWNBMHABW5RCWSGCQ2DHXDFYPG4E2YL/$Account_public/g" /home/ubuntu/stellar/rootAccount.json
-sed -i "s/SBW2NSLIUJNNEDU57ABVVAMFJY4RYD4VNGMATMCL4JIFEUNZEGOGYPEU/$Account_private/g" /home/ubuntu/stellar/rootAccount.json
+sed -i "s/SBW2NSLIUJNNEDU57ABVVAMFJY4RYD4VNGMATMCL4JIFEUNZEGOGYPEU/$private/g" /home/ubuntu/stellar/rootAccount.json
 #start stellar-core
 cd /home/ubuntu/stellar/stellar-core
 stellar-core --forcescp --conf node.cfg
