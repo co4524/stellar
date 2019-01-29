@@ -1,4 +1,4 @@
-install:
+stellar-core:
 	chmod 777 stellar-core-set.sh
 	./stellar-core-set.sh
 

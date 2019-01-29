@@ -1,19 +1,17 @@
 # stellar
 
->step1:auth
->>$chmod 777 stellar-core-set.sh
+>dependences
+>>$sudo apt install make
 
->step2: install psql
->>$echo 'Y' | sudo apt-get install postgresql postgresql-client
+>install psql
+>>$make postgresql      $psql postgres -f psql.dat    $exit
 
->step3: creat role db
->>$sudo su postgres 	 	 $psql postgres -f psql.dat
 
->step4: start stellar-core
->>$./stellar-core-set.sh
+>start stellar-core
+>>$make install
 
->step5 start horizon
->>$chmod 777 Horizon_env.sh 		$./Horizon_env.sh
+>Open new Terminal&&start horizon
+>>$make horizon
 
 # stellar
 
