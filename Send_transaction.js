@@ -41,6 +41,7 @@ server.loadAccount(wallet.publicKey)
       // A memo allows you to add your own metadata to a transaction. It's
       // optional and does not affect how Stellar treats the transaction.
       .addMemo(StellarSdk.Memo.text('Test Transaction'))
+      .setTime(30)
       .build();
     // Sign the transaction to prove you are actually the person sending it.
     transaction.sign(sourceKeys);
