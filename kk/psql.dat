@@ -1,0 +1,17 @@
+DROP DATABASE stellar_core1;
+DROP DATABASE stellar_core2;
+DROP DATABASE stellar_core3;
+DROP DATABASE stellar_core4;
+DROP DATABASE horizon_core1;
+DROP ROLE caideyi;
+CREATE USER caideyi WITH PASSWORD 'monkey456';
+CREATE DATABASE stellar_core1 OWNER caideyi;
+CREATE DATABASE stellar_core2 OWNER caideyi;
+CREATE DATABASE stellar_core3 OWNER caideyi;
+CREATE DATABASE stellar_core4 OWNER caideyi;
+CREATE DATABASE horizon_core1 OWNER caideyi;
+GRANT ALL PRIVILEGES ON DATABASE stellar_core1 to caideyi;
+GRANT ALL PRIVILEGES ON DATABASE stellar_core2 to caideyi;
+GRANT ALL PRIVILEGES ON DATABASE stellar_core3 to caideyi;
+GRANT ALL PRIVILEGES ON DATABASE stellar_core4 to caideyi;
+GRANT ALL PRIVILEGES ON DATABASE horizon_core1 to caideyi;
